@@ -7,10 +7,11 @@ Created on Thu Aug  2 14:30:36 2018
 
 class Hangman():
     
-    def __init__(self,phrase,display = [],fail_count = 0):
+    def __init__(self,phrase,display = [],fail_count = 0,guesses=[]):
         self.phrase = [x for x in phrase.lower()]
         self.display = ["_" if x !=" " else " " for x in self.phrase]
         self.fail_count = fail_count
+        self.guesses = guesses
         
     def displayBoard(self):
         print(" ".join(self.display))
@@ -26,12 +27,17 @@ class Hangman():
         print("  |        ")
         print("__|________")
         
-        
+    def displayBodyParts(self):
+        bodyparts = ['O','/','|','\\','/ ','\\']
+        if self.fail_count > 0:
+            return bodyparts[self.fail_count]
+    
     def checkGuess(self,n):
         for l in self.phrase:
             if l == n.lower():
                 return self.phrase.index(n)
         else:
+            self.guesses.append(n)
             return -1
    
     def updateGuess(self,pos,n):
@@ -55,6 +61,7 @@ test.displayHangman()
 game_on = True
 
 while game_on:
+    
     attempt = input("Enter a letter to check:")
     pos = test.checkGuess(attempt)
     if pos>=0:
