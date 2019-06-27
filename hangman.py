@@ -92,6 +92,6 @@ while game_on:
             game_on = False
 
 #Things left to do: 
-    #add in the actual hangman graphic
     #would you like to solve now?
-    #display # of wrong attempts left
+    #multiple letters
+
