@@ -25,12 +25,12 @@ class Hangman():
         print("LETTERS GUESSED: " + " ".join(self.guesses))
         
     def displayHangman(self):
-        print("  --------")
+        print("  ---------")
         print("  |       |")
         print("  |       "+self.hangman[0])
         print("  |      "+ self.hangman[1] + self.hangman[2] + self.hangman[3])
         print("  |       "+self.hangman[4])
-        print("  |      "+ self.hangman[5] +" " +self.hangman[6])
+        print("  |      "+ self.hangman[5] +self.hangman[6])
         print("  |        ")
         print("  |        ")
         print("  |        ")
@@ -39,7 +39,7 @@ class Hangman():
     def displayBodyParts(self):
         """ Display the body parts left to assign"""
         if self.fail_count > 0:
-            return bodyparts[self.fail_count]
+            return self.bodyparts[self.fail_count]
     
     def checkGuess(self,n):
         for l in self.phrase:
@@ -83,13 +83,18 @@ while game_on:
             print("Congratulations, you guessed the phrase!")
             game_on=False
     else:
+        
+        test.displayBoard()
+        test.displayGuess()
         test.updateDislayHangman()
-        print("Try again")
+        
         test.fail()
         again = test.fail_count
         if again > 6:
             print("Too many attempts, game over")
             game_on = False
+        test.displayHangman()
+        print("Try again")
 
 #Things left to do: 
     #would you like to solve now?
